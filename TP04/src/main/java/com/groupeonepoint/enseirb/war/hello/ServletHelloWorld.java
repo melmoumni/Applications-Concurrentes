@@ -9,25 +9,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Déclaration de la servlet auprès du conteneur de servlet
+// servlet declaration to the servlet container
 @WebServlet(name="HelloServlet", urlPatterns="/hello")
+/**
+ * A servlet that prints hello to the screen
+ * If a name and a number are given it says hello name number times
+ * Number must be > 0
+ * The default name is John and the default number is 1 
+ * @author mohammed
+ *
+ */
 public class ServletHelloWorld extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	// Méthode appelée par le conteneur lorsqu'une requète Http GET est reçue
+	// Method called when a GET request is received
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		
-		// On récupère un paramètre depuis la requète
 		String name = req.getParameter("name");
-		
-		// On génère la réponse
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("<h1>" + "Hello " + name + "! Je suis une servlet" + "</h1>");		
-		
+		String loop = req.getParameter("loop");
+		Integer number = 1;
+		try{	
+			number = Integer.parseInt(req.getParameter("loop"));
+		}catch(NumberFormatException e){
+			e.printStackTrace();
+		}finally{
+			resp.setContentType("text/html");
+			PrintWriter out = resp.getWriter();
+			if(name == null)
+				name = "John";
+			if(number == null || number <= 0)
+				number = 1;
+			out.print("<!DOCTYPE html><html><body>");
+			for(int i = 0; i< number; i++){
+				out.println("<h1>" + "Hello " +name+ "</h1>");		
+			}
+			out.print("</body></html>");
+		}
 	}
-
 }

@@ -37,7 +37,7 @@ public class ServletHelloWorld extends HttpServlet {
 		}finally{
 			resp.setContentType("text/html");
 			PrintWriter out = resp.getWriter();
-			if(name == null)
+			if(name == null || name.isEmpty())
 				name = "John";
 			if(number == null || number <= 0)
 				number = 1;

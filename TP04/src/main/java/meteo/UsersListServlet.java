@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name="UsersListServlet", urlPatterns="/meteo/users")
 public class UsersListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UsersListServlet() {
-        super();
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UsersListServlet() {
+		super();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

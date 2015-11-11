@@ -37,9 +37,9 @@ public class CreateUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String firstName = request.getParameter("firstname");
 		String lastName = request.getParameter("lastname");
-		User user = new User(firstName, lastName);
+		String psswd = request.getParameter("psswd");
+		User user = new User(firstName, lastName, psswd);
 		usersRepository.adduser(user);
-		System.out.println(usersRepository.getUsersList().size());
 		response.sendRedirect("/TP04/meteo/users");
 	}
 

@@ -18,7 +18,7 @@ public class AuthCtrl implements IAuthCtrl, Serializable{
     public boolean authentificate(User user){
         for(User usr : usersRepository.getUsersList()){
             if(usr.getFirstName().equals(user.getFirstName()) && usr.getLastName().equals(user.getLastName()) && usr.getPsswd().equals(user.getPsswd())) {
-                this.currentUser = user;
+                this.currentUser = usr;
                 return true;
             }
         }

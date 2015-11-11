@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name="UsersListServlet", urlPatterns="/meteo/users")
 public class UsersListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private List<User> usersList = UsersListSingleton.getUsersList();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,7 +27,6 @@ public class UsersListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("usersList", usersList);
 		request.getRequestDispatcher("/usersList.jsp").forward(request,response);
 	}
 

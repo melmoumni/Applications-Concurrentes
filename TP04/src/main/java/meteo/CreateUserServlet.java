@@ -2,6 +2,7 @@ package meteo;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name="CreateUserServlet", urlPatterns="/meteo/create-user")
 public class CreateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+	@Inject private UsersRepository usersRepository;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,7 +38,8 @@ public class CreateUserServlet extends HttpServlet {
 		String firstName = request.getParameter("firstname");
 		String lastName = request.getParameter("lastname");
 		User user = new User(firstName, lastName);
-		UsersListSingleton.getUsersList().add(user);
+		usersRepository.adduser(user);
+		System.out.println(usersRepository.getUsersList().size());
 		response.sendRedirect("/TP04/meteo/users");
 	}
 
